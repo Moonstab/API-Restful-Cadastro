@@ -9,34 +9,33 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-
 public class Tarefa {
+    //a declaracao private determina que as entidades privadas para poder preservar cada uma
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @NotBlank
+    private long id; //a id será gerada randomicamente devido a anotação generatedValue
+    @NotBlank // nao permite nulo ou em branco
     private String nome;
     @NotBlank
     private String descricao;
     @NotNull
     private LocalDate dataCadastro;
 
-    public Tarefa(String nome, String descricao, LocalDate dataCadastro) {
+    public Tarefa(String nome, String descricao, LocalDate dataCadastro) { //metodo de ordem de atributos
         this.nome = nome;
         this.descricao = descricao;
         this.dataCadastro = dataCadastro;
     }
 
-    @Deprecated
+    @Deprecated //metodo depreciado para nao ser usado
     public Tarefa() {
 
     }
 
     public long getId() {
-        paint
         return id;
     }
-
+        //GETters e SETters abaixo (utilizar o GENERATE)
     public void setId(long id) {
         this.id = id;
     }
