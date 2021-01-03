@@ -9,18 +9,18 @@ import java.time.LocalDate;
 
 public class SegurancaRequest {
 
-    @NotBlank // nao permite nulo ou em branco
+    @NotBlank
     private String nome;
     @NotBlank
-    private String entradaEmail;
+    private String email;
     @NotNull
     private LocalDate dataCadastro;
     @NotBlank
     @CPF
     private String cpfValido;
 
-    public Cadastro moduloNovo(){ //tomodel
-        return new Cadastro(this.nome, this.entradaEmail, this.dataCadastro, this.cpfValido);
+    public Cadastro moduloNovo() {
+        return new Cadastro(this.nome, this.email, this.dataCadastro, this.cpfValido);
     }
 
     public String getNome() {
@@ -32,11 +32,11 @@ public class SegurancaRequest {
     }
 
     public String getEntradaEmail() {
-        return entradaEmail;
+        return email;
     }
 
     public void setEntradaEmail(String entradaEmail) {
-        this.entradaEmail = entradaEmail;
+        this.email = entradaEmail;
     }
 
     public LocalDate getDataCadastro() {
@@ -54,6 +54,4 @@ public class SegurancaRequest {
     public void setCpfValido(String cpfValido) {
         this.cpfValido = cpfValido;
     }
-
-
 }

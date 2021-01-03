@@ -32,7 +32,7 @@ public class Servico {
         if (cadastro != null) {
             return true;
         }
-        return false;//se o nome for nulo, retorna false
+        return false;
     }
 
     public boolean verificaEmail(String entradaEmail) {

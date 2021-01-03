@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface CadastroRepository extends JpaRepository<Cadastro, Long> {
     Cadastro findByCpfValido(String cpfValido);
+
     Cadastro findByEmail(String entradaEmail);
 }

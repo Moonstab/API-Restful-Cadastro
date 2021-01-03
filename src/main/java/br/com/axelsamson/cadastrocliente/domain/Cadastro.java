@@ -13,10 +13,9 @@ import java.time.LocalDate;
 
 @Entity
 public class Cadastro {
-    //a declaracao private determina que as entidades privadas para poder preservar cada uma
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; //a id será gerada randomicamente devido a anotação generatedValue
+    private long id;
     @NotBlank
     private String nome;
     @NotBlank
@@ -41,7 +40,6 @@ public class Cadastro {
     public long getId() {
         return id;
     }
-        //GETters e SETters abaixo (utilizar o GENERATE)
 
     public String getNome() {
         return nome;
@@ -56,7 +54,7 @@ public class Cadastro {
     }
 
     public void setEmail(String entradaEmail) {
-        this.email = entradaEmail;
+        this.email = email;
     }
 
     public LocalDate getDataCadastro() {
@@ -75,7 +73,7 @@ public class Cadastro {
         this.cpfValido = cpfValido;
     }
 
-    public SegurancaResponse toResponse(){
+    public SegurancaResponse toResponse() {
         return new SegurancaResponse(this.id, this.nome);
     }
 }
