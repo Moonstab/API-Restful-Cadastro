@@ -20,23 +20,22 @@ public class Cadastro {
     @NotBlank
     private String nome;
     @NotBlank
-    private String entradaEmail;
+    private String email;
     @NotNull
     private LocalDate dataCadastro;
     @NotBlank
     @CPF
     private String cpfValido;
 
-    public Cadastro(String nome, String entradaEmail, LocalDate dataCadastro, String cpfValido) {
+    public Cadastro(String nome, String email, LocalDate dataCadastro, String cpfValido) {
         this.nome = nome;
-        this.entradaEmail = entradaEmail;
+        this.email = email;
         this.dataCadastro = dataCadastro;
         this.cpfValido = cpfValido;
     }
 
     @Deprecated
     public Cadastro() {
-
     }
 
     public long getId() {
@@ -52,12 +51,12 @@ public class Cadastro {
         this.nome = nome;
     }
 
-    public String getEntradaEmail() {
-        return entradaEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEntradaEmail(String entradaEmail) {
-        this.entradaEmail = entradaEmail;
+    public void setEmail(String entradaEmail) {
+        this.email = entradaEmail;
     }
 
     public LocalDate getDataCadastro() {

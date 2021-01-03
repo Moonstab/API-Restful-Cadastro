@@ -8,16 +8,20 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class SegurancaRequest {
-    public static Cadastro moduloNovo;
+
     @NotBlank // nao permite nulo ou em branco
     private String nome;
     @NotBlank
     private String entradaEmail;
     @NotNull
-    private LocalDate dataCadast;
+    private LocalDate dataCadastro;
     @NotBlank
     @CPF
     private String cpfValido;
+
+    public Cadastro moduloNovo(){ //tomodel
+        return new Cadastro(this.nome, this.entradaEmail, this.dataCadastro, this.cpfValido);
+    }
 
     public String getNome() {
         return nome;
@@ -35,12 +39,12 @@ public class SegurancaRequest {
         this.entradaEmail = entradaEmail;
     }
 
-    public LocalDate getDataCadast() {
-        return dataCadast;
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setDataCadast(LocalDate dataCadast) {
-        this.dataCadast = dataCadast;
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public String getCpfValido() {
@@ -50,4 +54,6 @@ public class SegurancaRequest {
     public void setCpfValido(String cpfValido) {
         this.cpfValido = cpfValido;
     }
+
+
 }
