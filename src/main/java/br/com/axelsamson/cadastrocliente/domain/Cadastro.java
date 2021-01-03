@@ -1,5 +1,7 @@
 package br.com.axelsamson.cadastrocliente.domain;
 
+import br.com.axelsamson.cadastrocliente.dto.SegurancaResponse;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-public class Tarefa {
+public class Cadastro {
     //a declaracao private determina que as entidades privadas para poder preservar cada uma
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +23,14 @@ public class Tarefa {
     @NotNull
     private LocalDate dataCadastro;
 
-    public Tarefa(String nome, String descricao, LocalDate dataCadastro) { //metodo de ordem de atributos
+    public Cadastro(String nome, String descricao, LocalDate dataCadastro) { //metodo de ordem de atributos
         this.nome = nome;
         this.descricao = descricao;
         this.dataCadastro = dataCadastro;
     }
 
     @Deprecated //metodo depreciado para nao ser usado
-    public Tarefa() {
+    public Cadastro() {
 
     }
 
@@ -62,5 +64,9 @@ public class Tarefa {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public SegurancaResponse toResponse(){
+        return new SegurancaResponse(this.id, this.nome);
     }
 }

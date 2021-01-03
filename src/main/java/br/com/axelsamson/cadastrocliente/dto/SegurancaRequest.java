@@ -1,25 +1,25 @@
 package br.com.axelsamson.cadastrocliente.dto;
 
-import br.com.axelsamson.cadastrocliente.domain.Tarefa;
+import br.com.axelsamson.cadastrocliente.domain.Cadastro;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class SegurancaRequest {
-    public static Tarefa moduloNovo;
+    public static Cadastro moduloNovo;
     @NotBlank // nao permite nulo ou em branco
     private String nome;
     @NotBlank
     private String descricao;
     @NotNull
-    private LocalDate dataCadast
+    private LocalDate dataCadast;
 
         //não esquecer de nunca colocar o id porque ele já gera sozinho ou isso vai dar erro novamente
         /*criar o método dentro do dto pra n dar erro na hora de pedir o método dentro do Controller*/
 
-    public Tarefa moduloNovo(this.nome, this.descricao, this.dataCadast)
-        //metodo do DTO
+    public Cadastro moduloNovo(this.nome, this.descricao, this.dataCadast) { //metodo do DTO
+    }
 
 
     //nunca esquecer de criar sempre os GET e SET do codigo ou o dto vai falhar
