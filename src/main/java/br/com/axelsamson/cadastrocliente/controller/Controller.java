@@ -12,22 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController                             //controlador REST == camada mais externa do sistema
-@RequestMapping(value = "/api/tarefa")   //endereço na URL como acessar o controller
+@RequestMapping(value = "/cliente")   //endereço na URL como acessar o controller
 public class Controller {
 
-                //mecanismo do CRUD
-                //criar uma tarefa
-    @PostMapping
+    @PostMapping(value = "/cadastro")
     public ResponseEntity<Cadastro> cadastrar(@RequestBody SegurancaRequest) {
-                //metodo de CADASTRAR vai buscar a classe no DTO
-                /*erro solucionado: não usar a entidade devido a exposição de dados sensíveis = criar DTO*/
-        Cadastro cadastro = SegurancaRequest.moduloNovo;
-                //criar o objeto para linkar com método criado no DTO
-                // e receber os dados de acordo com o modulo no DTO
 
-        Servico.cadastrar(cadastro);
+        Cadastro cadastro = SegurancaRequest.moduloNovo;
+
+        //Servico.cadastrar(cadastro);
+
         SegurancaResponse SegurancaResponse = cadastro.toResponse();
-        return ResponseEntity.status(HttpStatus.OK).body(SegurancaResponse);
-                //retorna erro ou sucesso ao gravar dados no banco
+        return (ResponseEntity<Cadastro>) ResponseEntity.status(HttpStatus.OK).body(SegurancaResponse);
+        //retorna erro ou sucesso ao gravar dados no banco
     }
 }

@@ -1,6 +1,7 @@
 package br.com.axelsamson.cadastrocliente.domain;
 
 import br.com.axelsamson.cadastrocliente.dto.SegurancaResponse;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,20 +17,24 @@ public class Cadastro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; //a id será gerada randomicamente devido a anotação generatedValue
-    @NotBlank // nao permite nulo ou em branco
+    @NotBlank
     private String nome;
     @NotBlank
-    private String descricao;
+    private String entradaEmail;
     @NotNull
     private LocalDate dataCadastro;
+    @NotBlank
+    @CPF
+    private String cpfValido;
 
-    public Cadastro(String nome, String descricao, LocalDate dataCadastro) { //metodo de ordem de atributos
+    public Cadastro(String nome, String entradaEmail, LocalDate dataCadastro, String cpfValido) {
         this.nome = nome;
-        this.descricao = descricao;
+        this.entradaEmail = entradaEmail;
         this.dataCadastro = dataCadastro;
+        this.cpfValido = cpfValido;
     }
 
-    @Deprecated //metodo depreciado para nao ser usado
+    @Deprecated
     public Cadastro() {
 
     }
@@ -38,9 +43,6 @@ public class Cadastro {
         return id;
     }
         //GETters e SETters abaixo (utilizar o GENERATE)
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -50,12 +52,12 @@ public class Cadastro {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getEntradaEmail() {
+        return entradaEmail;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setEntradaEmail(String entradaEmail) {
+        this.entradaEmail = entradaEmail;
     }
 
     public LocalDate getDataCadastro() {
@@ -64,6 +66,14 @@ public class Cadastro {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getCpfValido() {
+        return cpfValido;
+    }
+
+    public void setCpfValido(String cpfValido) {
+        this.cpfValido = cpfValido;
     }
 
     public SegurancaResponse toResponse(){

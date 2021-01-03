@@ -5,40 +5,38 @@ import br.com.axelsamson.cadastrocliente.repository.CadastroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
-import javax.swing.*;
-
-@Service                        //anotação avisa ao SPRING que a classe é de serviço (não esquecer)
+@Service
 public class Servico {
     @Autowired                  //invocar instancia unica no código = anotação
-    CadastroRepository cadastroRepository;//trouxe a função do repository para o service
-    /*erro solucionado, utilizar mesmo processo de TAREFA tipo CRUD*/
+    CadastroRepository cadastroRepository;
+    /*erro solucionado, utilizar mesmo processo de cadastro*/
 
+    Cadastro cadastrar(Cadastro cadastro) throws Exception {
+        //funcao de verificar se há um cadastro de email e cpf inserido para evitar repetição
+        if (verificaCpf(cadastro.getCpfValido())) {
+            throw new Exception("o CPF já está em uso.");
+            //se houver um CPF no cadastro imprime Exception = o CPF já consta como cadastrado.
 
-    //CriarTarefa = cadastro para cadastro(criar) para se add no banco
-    public Cadastro cadastrar(Cadastro cadastro) {
-
-        if (existeNome(cadastro.getNome())){
-            //funcao de verificar se há um cadastro com o nome inserido
-            //(essa funcao utiliza o codigo abaixo de
-            throw new Exception("o nome já está cadastrado.")
-            //se houver um nome no cadastro
-            //ele irá imprimir a msg do
-            // Exception = o nome jpa está cadastrado.
+        } else if (verificaEmail(cadastro.getEntradaEmail())) {
+            throw new Exception("o email já está em uso.");
+        } else {
+            return cadastroRepository.save(cadastro);
         }
-        return cadastroRepository.save(cadastro);
-
-        //.save = metodo herdado pelo extends em REPOSITORY
-        //função do repository para salvar o objeto cadastro
-        //e retorna uma cadastro(valor do objeto)
-
     }
-    public boolean existeNome(String nome){
-        Cadastro cadastro = cadastroRepository.findByNome(nome); //busca cadastro pelo nome
-        if (cadastro != null){ //se o nome for diferente de nulo, retorna true
+
+    public boolean verificaCpf(String cpfValido) {
+        Cadastro cadastro = cadastroRepository.findByCpfValido(cpfValido);
+        if (cadastro != null) {
             return true;
         }
         return false;//se o nome for nulo, retorna false
     }
 
+    public boolean verificaEmail(String entradaEmail) {
+        Cadastro cadastro = cadastroRepository.findByEmailValido(entradaEmail);
+        if (cadastro != null) {
+            return true;
+        }
+        return false;
+    }
 }
